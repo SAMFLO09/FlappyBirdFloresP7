@@ -13,7 +13,7 @@ public class Bird : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D> ();
+        rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
@@ -25,15 +25,17 @@ public class Bird : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 rb2d.velocity = Vector2.zero;
-                rb2d.AddForce(new Vector2 (0, upForce));
+                rb2d.AddForce(new Vector2(0, upForce));
                 anim.SetTrigger("Flap");
             }
         }
     }
 
-    void OnCollisionEnter2D ()
+    void OnCollisionEnter2D()
     {
         isDead = true;
         anim.SetTrigger("Die");
+        GameControl.instance.BirdDied();
     }
 }
+
